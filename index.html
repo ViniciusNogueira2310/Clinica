@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Veterinária SenaiPet</title>
+
+</head>
+<body>
+    <H2>Clínica SENAI</H2>
+    <p>Clique f12 e console</p>
+    <p id="pet1"></p>
+    <p id="pet2"></p>
+    <p id="pet3"></p>
+    <p id="pet4"></p>
+
+
+<script>
+    let pets = [
+        { nome: "Rex", idade: 5, tipo: "Cachorro", idadeHumana: function() { return this.idade * 7; }, interação: function() { return "au au"; } },
+        { nome: "Mimi", idade: 3, tipo: "Gato", idadeHumana: function() { return this.idade * 6; }, interação: function() { return "miau"; } },
+        { nome: "Niko", idade: 2, tipo: "Pássaro", idadeHumana: function() { return this.idade * 5; }, interação: function() { return "cru cru"; } },
+        { nome: "Pingo", idade: 2, tipo: "Coelho", idadeHumana: function() { return this.idade * 5; }, interação: function() { return "grr grr"; } }
+    ];
+
+    //função para listar os pets no console apenas com nome e tipo
+    //a função recebe uma lista de pets e imprime o nome e tipo de cada pet
+    const listarPets = (listaDePets) => {
+        console.log("\nLista de pets");
+        listaDePets.forEach(pet => {
+            console.log(`Nome: ${pet.nome}, Tipo: ${pet.tipo}`);
+        });
+    };
+
+    //imprime a lista inicial
+    console.log("Lista dos pets");
+    pets.forEach(pet => {
+        console.log("Nome: " + pet.nome + ", Idade: " + pet.idade + ", Tipo: " + pet.tipo + ", Idade Humana: " + pet.idadeHumana() + " anos, Falando: " + pet.interação());
+    });
+
+    //função para remover um pet pelo nome
+    //a função recebe o nome do pet a ser removido
+    const removerPetPorNome = (nome) => {
+        const tamanhoOriginal = pets.length; 
+        
+        
+        pets = pets.filter(pet => pet.nome.toLowerCase() !== nome.toLowerCase());
+
+        if (pets.length < tamanhoOriginal) {
+            console.log(`\nPet "${nome}" removido com sucesso.`);
+            listarPets(pets);
+        } else {
+            console.log(`\nPet "${nome}" não encontrado para remoção.`);
+        }
+    };
+
+    //a chamada da função é feita aqui, fora da sua declaração
+    removerPetPorNome("Rex");
+    
+    //tentando remover um pet que não existe
+    removerPetPorNome("Trovão");
+
+</script>
+</body>
+</html> 
